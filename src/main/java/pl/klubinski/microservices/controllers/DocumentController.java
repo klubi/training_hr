@@ -1,31 +1,25 @@
 package pl.klubinski.microservices.controllers;
 
-import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pl.klubinski.microservices.model.Employee;
-import pl.klubinski.microservices.service.EmployeeService;
+import pl.klubinski.microservices.model.Document;
+import pl.klubinski.microservices.repository.DocumentRepository;
 
 @RestController
-@RequestMapping(value = "employees")
-public class EmployeeController {
+@RequestMapping(value = "documents")
+public class DocumentController {
 
-  private final EmployeeService employeeService;
+  private final DocumentRepository documentRepository;
 
-  EmployeeController(EmployeeService employeeService){
-    this.employeeService = employeeService;
+  DocumentController(DocumentRepository documentRepository) {
+    this.documentRepository = documentRepository;
   }
 
-  @GetMapping(value = "{id}/subordinates")
-  public List<Employee> getSubortinates(@PathVariable Long id){
-    return employeeService.getSubordinates(id);
+  @PostMapping()
+  void lendDocument(@RequestBody Document document) {
+    documentRepository.saveAndFlush(document);
   }
 
-  @GetMapping
-  public List<Employee> getEmployees(@RequestParam(required = false) Long departmentId){
-    return employeeService.getEmployees(departmentId);
-  }
 }

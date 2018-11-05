@@ -1,5 +1,6 @@
 package pl.klubinski.microservices.model;
 
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +15,13 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "document")
+@Table(name = "documents")
 public class Document {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private UUID documentId;
 
   @Column
-  private String name;
+  private UUID managerId;
 }

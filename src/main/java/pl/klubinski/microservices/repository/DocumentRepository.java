@@ -1,8 +1,9 @@
 package pl.klubinski.microservices.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.klubinski.microservices.model.Employee;
+import pl.klubinski.microservices.model.Document;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+public interface DocumentRepository extends JpaRepository<Document, Long> {
 
 }
