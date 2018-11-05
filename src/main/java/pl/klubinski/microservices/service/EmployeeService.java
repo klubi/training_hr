@@ -19,7 +19,7 @@ public class EmployeeService {
   }
 
   public List<Employee> getSubordinates(UUID id) {
-    return employeeRepository.findAll().stream().filter(e -> e.getManager().getId().equals(id)).collect(Collectors.toList());
+    return employeeRepository.findAll().stream().filter(e -> id.equals(e.getManager())).collect(Collectors.toList());
   }
 
   public List<Employee> getEmployees(UUID departmentId) {

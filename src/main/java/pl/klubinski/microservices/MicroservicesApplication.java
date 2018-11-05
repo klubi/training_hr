@@ -2,7 +2,6 @@ package pl.klubinski.microservices;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
-import java.util.Collections;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -58,6 +57,14 @@ public class MicroservicesApplication {
       employee.setDepartment(department);
       employeeRepository.saveAndFlush(employee);
     }
+    Employee manager = employeeRepository.findAll().stream().findAny().get();
+    System.out.println(manager);
+    employeeRepository.findAll().stream().filter(e -> !e.getId().equals(manager.getId()))
+        .forEach(m -> {
+          m.setManager(manager);
+          System.out.println(m);
+          employeeRepository.saveAndFlush(m);
+        });
   }
 }
 
