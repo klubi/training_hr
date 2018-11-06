@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/hr_db
+    url: jdbc:h2:mem:hr_db;DB_CLOSE_DELAY=-1
     username: db
     password: hr
+    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: create

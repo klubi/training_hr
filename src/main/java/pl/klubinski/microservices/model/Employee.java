@@ -3,12 +3,10 @@ package pl.klubinski.microservices.model;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
@@ -31,11 +29,11 @@ public class Employee {
   @Column
   private String lastName;
 
+  @Column
+  private UUID managerId;
+
   @OneToOne(targetEntity = Department.class)
   @JoinColumn(name = "department_id")
   private Department department;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "manager_id")
-  private Employee manager;
 }

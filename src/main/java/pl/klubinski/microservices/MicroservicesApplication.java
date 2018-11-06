@@ -58,11 +58,9 @@ public class MicroservicesApplication {
       employeeRepository.saveAndFlush(employee);
     }
     Employee manager = employeeRepository.findAll().stream().findAny().get();
-    System.out.println(manager);
     employeeRepository.findAll().stream().filter(e -> !e.getId().equals(manager.getId()))
         .forEach(m -> {
-          m.setManager(manager);
-          System.out.println(m);
+          m.setManagerId(manager.getId());
           employeeRepository.saveAndFlush(m);
         });
   }
